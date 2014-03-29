@@ -19,8 +19,8 @@ git BUNDLE_HOME + "/neobundle.vim/" do
 	user USER
 	group GROUP
 	repository "git://github.com/Shougo/neobundle.vim"
-	reference "master"
-	action :sync
+	revision "master"
+	action :checkout
 end
 
 bash "chown" do
@@ -33,6 +33,6 @@ template ".vimrc" do
 	source "vimrc.erb"
 	owner USER
 	group GROUP
-	mode 744
+	mode 774
 end
 
