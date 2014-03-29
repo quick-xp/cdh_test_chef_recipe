@@ -20,21 +20,7 @@ NeoBundle 'Shougo/unite.vim'
 
 
 " ctagsの非同期生成
-NeoBundleLazy 'alpaca-tc/alpaca_tags', {
-\ 'rev' : 'master',
-\ 'depends': ['Shougo/vimproc', 'Shougo/unite.vim'],
-\ 'autoload' : {
-\   'commands' : ['Tags', 'TagsUpdate', 'TagsSet', 'TagsBundle', 'TagsCleanCache'],
-\   'unite_sources' : ['tags']
-\ }}
-
-" ~/.ctagsにctagsの設定ファイルを設置します。現在無い人は、このディレクトリ内の.ctagsをコピーしてください。
-" 適切なlanguageは`ctags --list-maps=all`で見つけてください。人によりますので。
-let g:alpaca_update_tags_config = {
-\ '_' : '-R --sort=yes --languages=-js,html,css',
-\ 'ruby': '--languages=+Ruby',
-\ }
-
+NeoBundle 'alpaca-tc/alpaca_tags'
 
 " alpaca_tags 設定
 augroup AlpacaTags
