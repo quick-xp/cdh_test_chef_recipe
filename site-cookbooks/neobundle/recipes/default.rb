@@ -12,14 +12,14 @@ directory BUNDLE_HOME do
 	group GROUP
 	mode 744
 	action :create
-	recursive ture
+	recursive true
 end
 
 git BUNDLE_HOME + "/neobundle.vim/" do
 	user USER
 	group GROUP
 	repository "git://github.com/Shougo/neobundle.vim"
-	reference master
+	reference "master"
 	action :sync
 end
 
@@ -28,7 +28,7 @@ bash "chown" do
 	code "chown -R " << USER << ":" << GROUP << " " << BUNDLE_HOME << "&&" << "chmod -R 744 " << BUNDLE_HOME
 end
 
-templete ".vimrc" do
+template ".vimrc" do
 	path BUNDLE_HOME + "/../../.vimrc"
 	source "vimrc.erb"
 	owner USER
