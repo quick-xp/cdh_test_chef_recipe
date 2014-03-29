@@ -1,1 +1,15 @@
-{"run_list":["base-git"]}
+{
+	"run_list":["base-git",
+		"server-init",
+		"neobundle"
+			],
+		"server-init":{
+			"user" : "chato",
+			"group" : "staff"
+		},
+		"neobundle":{
+			"user" : "chato",
+			"group" :"staff"
+		}
+
+}
