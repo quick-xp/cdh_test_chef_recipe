@@ -26,7 +26,7 @@ end
 directory HOME do
 	owner USER
 	group GROUP
-	mode '0644'
+	mode '0775'
 	action :create
 end
 
@@ -38,14 +38,7 @@ template ".zshrc" do
 	mode 00744
 end
 
-directory HOME + "/plugin" do
-	owner USER
-	group GROUP
-	mode '0644'
-	action :create
-end
-
-git HOME + "/plugin/auto-fu.zsh" do
+git HOME + "/plugin" do
 	user USER
 	group GROUP
 	repository "https://github.com/hchbaw/auto-fu.zsh.git"
@@ -53,3 +46,4 @@ git HOME + "/plugin/auto-fu.zsh" do
 	action :checkout
 end
 
+	
