@@ -28,11 +28,15 @@ bash "chown" do
 	code "chown -R " << USER << ":" << GROUP << " " << BUNDLE_HOME << "&&" << "chmod -R 744 " << BUNDLE_HOME
 end
 
+
 template ".vimrc" do
 	path BUNDLE_HOME + "/../../.vimrc"
 	source "vimrc.erb"
 	owner USER
 	group GROUP
-	mode 774
+	mode 00774
 end
+
+package 'ctags'
+
 
