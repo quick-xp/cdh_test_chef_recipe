@@ -16,7 +16,7 @@ Usage
 -----
 #### neobundle::default
 
-Just include `neobundle` in your node's `run_list`:
+次の記述をNodeに記載してください
 
 ```json
 {
@@ -31,4 +31,5 @@ Just include `neobundle` in your node's `run_list`:
 }
 ```
 
-
+NeoBundleInstall は行いません。
+vim を開き:NeoBundleInstall コマンドを実行してください

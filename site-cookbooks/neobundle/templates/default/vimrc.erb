@@ -14,7 +14,11 @@ NeoBundle 'Shougo/neobundle.vim'
 set number
 
 " plugin
-NeoBundle 'Shougo/vimproc'
+NeoBundle 'Shougo/vimproc',{
+\ 'build' :{
+\ 'unix' : 'make -f make_unix.mak'
+\},
+\}
 NeoBundle 'Shougo/neocomplcache'
 NeoBundle 'Shougo/unite.vim'
 
