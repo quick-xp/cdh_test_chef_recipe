@@ -23,13 +23,6 @@ user USER do
 	action   [:create]
 end
 
-directory HOME do
-	owner USER
-	group GROUP
-	mode '0644'
-	action :create
-end
-
 template ".zshrc" do
 	path HOME + "/.zshrc"
 	source "zshrc.erb"
@@ -38,10 +31,10 @@ template ".zshrc" do
 	mode 00744
 end
 
-directory HOME + "/plugin" do
+directory HOME + "/plugin/" do
 	owner USER
 	group GROUP
-	mode '0644'
+	mode 00764
 	action :create
 end
 
