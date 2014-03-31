@@ -76,7 +76,7 @@ alias lsa='ls -la -GF'
 #自動補完スクリプト
 #################
 
-source ~/Plugin/auto-fu.zsh
+source ~/plugin/auto-fu.zsh/auto-fu.zsh
 function zle-line-init () {
 auto-fu-init
     }

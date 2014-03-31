@@ -13,7 +13,6 @@
 			"group" :"staff"
 		},
 		"rvm":{
-			"user" : "chato",
 			"default_ruby" : "ruby-2.0.0-p195",
 			"rubies":  [ "ruby-2.0.0-p195" ]
 		}
