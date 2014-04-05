@@ -3,7 +3,7 @@
 		"server-init",
 		"neobundle",
 		"recipe[rvm::system]",
-		"recipe[java::default]",
+		"recipe[java::default]"
 			],
 		"server-init":{
 			"user" : "chato",

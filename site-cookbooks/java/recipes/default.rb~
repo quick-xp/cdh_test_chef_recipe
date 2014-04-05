@@ -3,7 +3,11 @@
 # Recipe:: default
 #
 
-package "openjdk-7-jre-headless" do
+bash "apt-get-update" do
+	code "apt-get update"
+end
+
+package "openjdk-7-jdk" do
 	action :install
 end
 
