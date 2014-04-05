@@ -2,7 +2,8 @@
 	"run_list":["base-git",
 		"server-init",
 		"neobundle",
-		"recipe[rvm::system]"
+		"recipe[rvm::system]",
+		"recipe[java::default]"
 			],
 		"server-init":{
 			"user" : "chato",

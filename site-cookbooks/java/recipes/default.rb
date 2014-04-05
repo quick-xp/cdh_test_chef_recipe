@@ -2,7 +2,12 @@
 # Cookbook Name:: java
 # Recipe:: default
 #
-# Copyright 2014, YOUR_COMPANY_NAME
-#
-# All rights reserved - Do Not Redistribute
-#
+
+bash "apt-get-update" do
+	code "apt-get update"
+end
+
+package "openjdk-7-jdk" do
+	action :install
+end
+

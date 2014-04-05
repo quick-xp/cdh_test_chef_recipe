@@ -1,0 +1,9 @@
+#
+# Cookbook Name:: java
+# Recipe:: default
+#
+
+package "openjdk-7-jre-headless" do
+	action :install
+end
+
