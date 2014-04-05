@@ -3,7 +3,7 @@
 		"server-init",
 		"neobundle",
 		"recipe[rvm::system]",
-		"recipe[mysql::server]"
+		"recipe[mysql::server]",
 			],
 		"server-init":{
 			"user" : "chato",

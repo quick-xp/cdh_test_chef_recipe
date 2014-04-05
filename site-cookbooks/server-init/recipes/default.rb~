@@ -38,7 +38,15 @@ directory HOME + "/plugin/" do
 	action :create
 end
 
-git HOME + "/plugin/auto-fu.zsh" do
+directory HOME + "/plugin/auto-fu.zsh/" do
+	owner USER
+	group GROUP
+	mode 00764
+	action :create
+end
+
+
+git HOME + "/plugin/auto-fu.zsh/auto-fu.zsh" do
 	user USER
 	group GROUP
 	repository "https://github.com/hchbaw/auto-fu.zsh.git"

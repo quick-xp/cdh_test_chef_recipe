@@ -1,0 +1,84 @@
+
+PATH=$PATH:/usr/local/rvm/bin # Add RVM to PATH for scripting
+#export PATH="/usr/local/bin:$PATH"
+source /usr/local/rvm/scripts/rvm
+
+#################
+#History
+#################
+HISTFILE=~/.zsh_history
+HISTSIZE=10000
+SAVEHIST=10000
+setopt hist_ignore_dups
+setopt share_history
+setopt auto_pushd
+setopt pushd_ignore_dups
+
+#################
+#completion
+#################
+autoload -U compinit
+compinit
+setopt correct
+zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
+
+##################
+#Prompt Setting
+#################
+#git mercurial show version
+
+autoload -U colors; colors
+
+function rprompt-git-current-branch {
+        local name st color
+
+        if [[ "$PWD" =~ '/\.git(/.*)?$' ]]; then
+                return
+        fi
+        name=$(basename "`git symbolic-ref HEAD 2> /dev/null`")
+        if [[ -z $name ]]; then
+                return
+        fi
+        st=`git status 2> /dev/null`
+        if [[ -n `echo "$st" | grep "^nothing to"` ]]; then
+                color=${fg[green]}
+        elif [[ -n `echo "$st" | grep "^nothing added"` ]]; then
+                color=${fg[yellow]}
+        elif [[ -n `echo "$st" | grep "^# Untracked"` ]]; then
+                color=${fg_bold[red]}
+        else
+                color=${fg[red]}
+        fi
+
+        # %{...%} は囲まれた文字列がエスケープシーケンスであることを明示する
+        # これをしないと右プロンプトの位置がずれる
+        echo "%{$color%}$name%{$reset_color%} "
+}
+
+# プロンプトが表示されるたびにプロンプト文字列を評価、置換する
+setopt prompt_subst
+
+#sh like prompt
+## プロンプトの設定
+PROMPT="%{${fg[green]}%}[%n@%m] %(!.#.$) %{${reset_color}%}"
+PROMPT2="%{${fg[green]}%}%_> %{${reset_color}%}"
+SPROMPT="%{${fg[red]}%}correct: %R -> %r [nyae]? %{${reset_color}%}"
+RPROMPT='[`rprompt-git-current-branch`%~]'
+
+#################
+#Ailias
+#################
+
+alias ls='ls -GF'
+alias lsa='ls -la -GF'
+
+#################
+#自動補完スクリプト
+#################
+
+source ~/plugin/auto-fu.zsh/auto-fu.zsh
+function zle-line-init () {
+auto-fu-init
+    }
+zle -N zle-line-init
+        zstyle ':completion:*' completer _oldlist _complete
