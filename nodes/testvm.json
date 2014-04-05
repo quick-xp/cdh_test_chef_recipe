@@ -2,8 +2,7 @@
 	"run_list":["base-git",
 		"server-init",
 		"neobundle",
-		"recipe[rvm::system]",
-		"recipe[mysql::server]"
+		"recipe[rvm::system]"
 			],
 		"server-init":{
 			"user" : "chato",
@@ -17,11 +16,5 @@
 			"user" : "chato",
 			"default_ruby" : "ruby-2.0.0-p195",
 			"rubies":  [ "ruby-2.0.0-p195" ]
-		},
-		"mysql":{
-			"server_root_password": "Password#1",
-			"server_repl_password": "Password#1",
-			"server_debian_password": "Password#1"
 		}
-
 }
