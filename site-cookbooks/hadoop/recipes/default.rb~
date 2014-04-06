@@ -36,7 +36,7 @@ bash "get-hadoop-file" do
 	wget #{URL}
 	tar zxf #{HadoopFileName}.tar.gz
 	mv #{HadoopFileName} hadoop
-	mv #{HadoopFileName} /usr/local
+	mv /usr/local/src/hadoop /usr/local
 	chown -R hadoop:hadoop /usr/local/hadoop
 	EOS
 end
@@ -44,6 +44,22 @@ end
 template ".bashrc" do
 	path "/home/hadoop/.bashrc"
 	source "bashrc.erb"
+	owner "hadoop"
+	group "hadoop"
+	mode 00744
+end
+
+template "yarn-site.xml" do
+	path "/usr/local/hadoop/etc/hadoop/yarn-site.xml"
+	source "yarn-site.xml.erb"
+	owner "hadoop"
+	group "hadoop"
+	mode 00744
+end
+
+template "hdfs-site.xml" do
+	path "/usr/local/hadoop/etc/hadoop/hdfs-site.xml"
+	source "hdfs-site.xml.erb"
 	owner "hadoop"
 	group "hadoop"
 	mode 00744

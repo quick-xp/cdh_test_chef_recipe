@@ -49,5 +49,37 @@ template ".bashrc" do
 	mode 00744
 end
 
+template "yarn-site.xml" do
+	path "/usr/local/hadoop/etc/hadoop/yarn-site.xml"
+	source "yarn-site.xml.erb"
+	owner "hadoop"
+	group "hadoop"
+	mode 00744
+end
+
+template "hdfs-site.xml" do
+	path "/usr/local/hadoop/etc/hadoop/hdfs-site.xml"
+	source "hdfs-site.xml.erb"
+	owner "hadoop"
+	group "hadoop"
+	mode 00744
+end
+
+template "core-site.xml" do
+	path "/usr/local/hadoop/etc/hadoop/core-site.xml"
+	source "core-site.xml.erb"
+	owner "hadoop"
+	group "hadoop"
+	mode 00744
+end
+
+template "mapred-site.xml" do
+	path "/usr/local/hadoop/etc/hadoop/mapred-site.xml"
+	source "mapred-site.xml.erb"
+	owner "hadoop"
+	group "hadoop"
+	mode 00744
+end
+
 
 

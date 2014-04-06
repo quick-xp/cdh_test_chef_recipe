@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+
+<configuration>
+	<property>
+		<name>yarn.log-aggregation-enable</name>
+		<value>true</value>
+	</property>
+	<property>
+		<name>yarn.nodemanager.resource.memory-mb</name>
+		<value>1024</value>
+		<description>Amount of physical memory, in MB, that can be allocated
+			for containers. (default: 8192)</description>
+	</property>
+	<property>
+		<name>yarn.nodemanager.resource.cpu-cores</name>
+		<value>1</value>
+		<description>Number of CPU cores that can be allocated
+			for containers. (default: 8)</description>
+	</property>
+	<property>
+		<name>yarn.nodemanager.aux-services</name>
+		<value>mapreduce_shuffle</value>
+		<description>shuffle service that needs to be set for Map Reduce to run</description>
+	</property>
+</configuration>
