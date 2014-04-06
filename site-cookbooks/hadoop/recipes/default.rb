@@ -27,6 +27,27 @@ directory "/usr/local/hadoop" do
 	action :create
 end
 
+directory "/var/hdfs" do
+	owner "hadoop"
+	group "hadoop"
+	mode 00764
+	action :create
+end
+
+directory "/var/hdfs/namenode" do
+	owner "hadoop"
+	group "hadoop"
+	mode 00764
+	action :create
+end
+
+directory "/var/hdfs/datanode" do
+	owner "hadoop"
+	group "hadoop"
+	mode 00764
+	action :create
+end
+
 package "ssh"
 
 bash "get-hadoop-file" do
@@ -82,4 +103,17 @@ template "mapred-site.xml" do
 end
 
 
+directory "/usr/local/hadoop" do
+	owner "hadoop"
+	group "hadoop"
+	mode 00764
+	action :create
+end
 
+#hdfs node のフォーマット
+execute "hdfs-namenode-format" do
+  command "hdfs namenode -format"
+  action :nothing
+  group "hdfs"
+  user "hdfs"
+end

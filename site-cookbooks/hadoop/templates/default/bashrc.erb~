@@ -1,4 +1,4 @@
-export JAVA_HOME=/usr/lib/jvm/java-7-openjdk-adm64/
+export JAVA_HOME=/usr/
 export HADOOP_COMMON_HOME=/usr/local/hadoop
 export HADOOP_CONF_DIR=/usr/local/hadoop/hadoop-common-project/hadoop-common/src/main/conf 
 export HADOOP_HDFS_HOME=/usr/local/hadoop/hadoop-hdfs-project/hadoop-hdfs

@@ -13,7 +13,7 @@
 <configuration>
   <property>
     <name>fs.default.name</name>
-    <value>hdfs://192.168.12.42:9000</value>
+    <value>hdfs://192.168.12:9000</value>
   </property>
 <!--
   <property>
