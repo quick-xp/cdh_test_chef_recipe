@@ -35,23 +35,14 @@ bash "get-hadoop-file" do
 	cd /usr/local/src
 	wget #{URL}
 	tar zxf #{HadoopFileName}.tar.gz
-	mv #{HadoopFileName} /usr/local/hadoop
-	chown hadoop /usr/local/hadoop
-	chown hadoop #{HadoopFileName}
+	mv #{HadoopFileName} hadoop
+	mv /usr/local/src/hadoop /usr/local
+	chown -R hadoop:hadoop /usr/local/hadoop
 	EOS
 end
 
-
-template "hadoop-env.sh" do
-	path "/usr/local/hadoop"
-	source "hadoop-env.sh.erb"
-	owner "hadoop"
-	group "hadoop"
-	mode 00744
-end
-
 template ".bashrc" do
-	path "/home/hadoop"
+	path "/home/hadoop/.bashrc"
 	source "bashrc.erb"
 	owner "hadoop"
 	group "hadoop"
