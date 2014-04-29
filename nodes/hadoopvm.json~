@@ -1,0 +1,5 @@
+{
+	"run_list":["base-git",
+		"recipe[java::default]"
+			]
+}
