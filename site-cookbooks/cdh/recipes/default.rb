@@ -92,14 +92,14 @@ end
 directory "/data" do
 	owner "hdfs"
 	group "hadoop"
-	mode 00744
+	mode 00774
 	action :create
 end
 
 directory "/data/1" do
 	owner "hdfs"
 	group "hadoop"
-	mode 00744
+	mode 00774
 	action :create
 end
 
@@ -156,22 +156,22 @@ end
 #yarnデータ格納用フォルダ作成
 directory "/data/1/yarn" do
 	owner "yarn"
-	group "hadoop"
-	mode 00744
+	group "yarn"
+	mode 00755
 	action :create
 end
 
 directory "/data/1/yarn/local" do
 	owner "yarn"
-	group "hadoop"
-	mode 00744
+	group "yarn"
+	mode 00755
 	action :create
 end
 
 directory "/data/1/yarn/logs" do
 	owner "yarn"
-	group "hadoop"
-	mode 00744
+	group "yarn"
+	mode 00755
 	action :create
 end
 

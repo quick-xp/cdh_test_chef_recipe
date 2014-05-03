@@ -13,7 +13,7 @@
 <!-- Site specific YARN configuration properties -->
 <configuration>
   <property>
-    <name>fs.default.FS</name>
-    <value>hdfs://hadoopvm:9000</value>
+    <name>fs.defaultFS</name>
+    <value>hdfs://0.0.0.0:9000</value>
   </property>
 </configuration>
