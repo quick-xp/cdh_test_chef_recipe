@@ -19,7 +19,7 @@ bash "add-cdh-repository" do
 	code "curl -s http://archive.cloudera.com/cdh4/ubuntu/precise/amd64/cdh/archive.key | apt-key add -"
 end
 
-package 'hadoop-yarn-resourcemanager' do
+package 'hadoop-0.20-mapreduce-jobtracker' do
 	options "-f --force-yes"
 	action :install
 end
@@ -29,27 +29,12 @@ package 'hadoop-hdfs-namenode' do
 	action :install
 end
 
-package 'hadoop-yarn-nodemanager' do
+package 'hadoop-0.20-mapreduce-tasktracker' do
 	options "-f --force-yes"
 	action :install
 end
 
 package 'hadoop-hdfs-datanode' do
-	options "-f --force-yes"
-	action :install
-end
-
-package 'hadoop-mapreduce' do
-	options "-f --force-yes"
-	action :install
-end
-
-package 'hadoop-mapreduce-historyserver' do
-	options "-f --force-yes"
-	action :install
-end
-
-package 'hadoop-yarn-proxyserver' do
 	options "-f --force-yes"
 	action :install
 end
@@ -144,7 +129,7 @@ service "hadoop-hdfs-datanode" do
 	action :restart
 end
 
-#設定ファイル(YARN)
+#設定ファイル(MRv1)
 template "mapred-site.xml" do
 	path "/etc/hadoop/conf.my_cluster/mapred-site.xml"
 	source "mapred-site.xml.erb"
@@ -153,44 +138,19 @@ template "mapred-site.xml" do
 	mode 00644
 end
 
-template "yarn-site.xml" do
-	path "/etc/hadoop/conf.my_cluster/yarn-site.xml"
-	source "yarn-site.xml.erb"
-	owner "root"
+#MapReduceデータ格納用フォルダ作成
+directory "/data/1/mapred" do
+	owner "mapred"
 	group "hadoop"
-	mode 00644
-end
-
-#yarnデータ格納用フォルダ作成
-directory "/data/1/yarn" do
-	owner "yarn"
-	group "yarn"
 	mode 00755
 	action :create
 end
 
-directory "/data/1/yarn/local" do
-	owner "yarn"
-	group "yarn"
+directory "/data/1/mapred/local" do
+	owner "mapred"
+	group "hadoop"
 	mode 00755
 	action :create
-end
-
-directory "/data/1/yarn/logs" do
-	owner "yarn"
-	group "yarn"
-	mode 00755
-	action :create
-end
-
-#yarn.nodemanager.remote-app-log-dir用のhdfsディレクトリ作成
-bash "create hdfs directory for app-log" do
-        code <<-EOS
-	sudo -u hdfs hadoop fs -mkdir -p /var/log/hadoop-yarn/apps
-	sudo -u hdfs hadoop fs -chown -R yarn:hadoop /var/log/hadoop-yarn
-	sudo -u hdfs hadoop fs -chmod -R 1774 /var/log/hadoop-yarn
-	EOS
-	not_if "sudo -u hdfs hadoop fs -test -d /var/log/hadoop-yarn/apps"
 end
 
 #hdfs上にtmpディレクトリ作成
@@ -202,26 +162,33 @@ bash "create tmp directory on hdfs" do
 	not_if "sudo -u hdfs hadoop fs -test -d /tmp"
 end
 
-#hdfs上にHistory用ディレクトリ作成
-bash "create history directory on hdfs" do
+#hdfs上に/varディレクトリ作成
+bash "create var directory on hdfs" do
         code <<-EOS
-	sudo -u hdfs hadoop fs -mkdir -p /user/history
-	sudo -u hdfs hadoop fs -chown -R yarn:hadoop /user/history
-	sudo -u hdfs hadoop fs -chmod -R 1777 /user/history
+	sudo -u hdfs hadoop fs -mkdir -p /var/lib/hadoop-hdfs/cache/mapred/mapred/staging
+	sudo -u hdfs hadoop fs -chown -R mapred /var/lib/hadoop-hdfs/cache/mapred/mapred/staging
+	sudo -u hdfs hadoop fs -chmod -R 1777 /var/lib/hadoop-hdfs/cache/mapred
 	EOS
 	not_if "sudo -u hdfs hadoop fs -test -d /user/history"
 end
 
+bash "Create and Configure the mapred.system.dir Directory in HDFS" do
+        code <<-EOS
+	sudo -u hdfs hadoop fs -mkdir /tmp/mapred/system
+	sudo -u hdfs hadoop fs -chown mapred:hadoop /tmp/mapred/system
+	EOS
+	not_if "sudo -u hdfs hadoop fs -test -d /user/history"
+end
+
+
+
 #Service起動
-service "hadoop-yarn-resourcemanager" do
+service "hadoop-0.20-mapreduce-tasktracker" do
 	action :restart
 end
 
-service "hadoop-yarn-nodemanager" do
+service "hadoop-0.20-mapreduce-jobtracker" do
 	action :restart
 end
 
-service "hadoop-mapreduce-historyserver" do
-	action :restart
-end
 

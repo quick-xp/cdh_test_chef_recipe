@@ -92,14 +92,14 @@ end
 directory "/data" do
 	owner "hdfs"
 	group "hadoop"
-	mode 00744
+	mode 00774
 	action :create
 end
 
 directory "/data/1" do
 	owner "hdfs"
 	group "hadoop"
-	mode 00744
+	mode 00774
 	action :create
 end
 
