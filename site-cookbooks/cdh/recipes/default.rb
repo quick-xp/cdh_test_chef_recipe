@@ -74,7 +74,7 @@ end
 #設定ファイル(HDFS)
 template "core-site.xml" do
 	path "/etc/hadoop/conf.my_cluster/core-site.xml"
-	source "core-site.xml.erb"
+	source "core-site_2.xml.erb"
 	owner "root"
 	group "hadoop"
 	mode 00644
@@ -82,7 +82,7 @@ end
 
 template "hdfs-site.xml" do
 	path "/etc/hadoop/conf.my_cluster/hdfs-site.xml"
-	source "hdfs-site.xml.erb"
+	source "hdfs-site_2.xml.erb"
 	owner "root"
 	group "hadoop"
 	mode 00644
@@ -147,7 +147,7 @@ end
 #設定ファイル(YARN)
 template "mapred-site.xml" do
 	path "/etc/hadoop/conf.my_cluster/mapred-site.xml"
-	source "mapred-site.xml.erb"
+	source "mapred-site_2.xml.erb"
 	owner "root"
 	group "hadoop"
 	mode 00644

@@ -135,6 +135,14 @@ bash "node format" do
 	EOS
 end
 
+#Service起動
+service "hadoop-hdfs-namenode" do
+	action :restart
+end
+
+service "hadoop-hdfs-datanode" do
+	action :restart
+end
 
 #設定ファイル(YARN)
 template "mapred-site.xml" do
@@ -205,14 +213,6 @@ bash "create history directory on hdfs" do
 end
 
 #Service起動
-service "hadoop-hdfs-namenode" do
-	action :restart
-end
-
-service "hadoop-hdfs-datanode" do
-	action :restart
-end
-
 service "hadoop-yarn-resourcemanager" do
 	action :restart
 end
