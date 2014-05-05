@@ -59,7 +59,7 @@ end
 #設定ファイル(HDFS)
 template "core-site.xml" do
 	path "/etc/hadoop/conf.my_cluster/core-site.xml"
-	source "core-site.xml.erb"
+	source "cdh4/core-site.xml.erb"
 	owner "root"
 	group "hadoop"
 	mode 00644
@@ -67,7 +67,7 @@ end
 
 template "hdfs-site.xml" do
 	path "/etc/hadoop/conf.my_cluster/hdfs-site.xml"
-	source "hdfs-site.xml.erb"
+	source "cdh4/hdfs-site.xml.erb"
 	owner "root"
 	group "hadoop"
 	mode 00644
@@ -132,7 +132,7 @@ end
 #設定ファイル(MRv1)
 template "mapred-site.xml" do
 	path "/etc/hadoop/conf.my_cluster/mapred-site.xml"
-	source "mapred-site.xml.erb"
+	source "cdh4/mapred-site.xml.erb"
 	owner "root"
 	group "hadoop"
 	mode 00644

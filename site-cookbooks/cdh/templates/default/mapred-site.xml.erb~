@@ -17,8 +17,12 @@ limitations under the License. See accompanying LICENSE file.
 <!-- Put site-specific property overrides in this file. -->
 
 <configuration>
-    <property>
-        <name>mapreduce.framework.name</name>
-        <value>yarn</value>
-    </property>
+	<property>
+		<name>mapred.job.tracker</name>
+		<value>hadoopvm:8021</value>
+	</property>
+	<property>
+		<name>mapred.local.dir</name>
+		<value>/data/1/mapred/local/<value>
+	</property>
 </configuration>

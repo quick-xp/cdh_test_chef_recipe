@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: cdh
-# Recipe:: default
+# Recipe:: cdh
 #
 
 template "cloudera.list" do
@@ -59,7 +59,7 @@ end
 #設定ファイル(HDFS)
 template "core-site.xml" do
 	path "/etc/hadoop/conf.my_cluster/core-site.xml"
-	source "cdh4/core-site.xml.erb"
+	source "core-site.xml.erb"
 	owner "root"
 	group "hadoop"
 	mode 00644
@@ -67,7 +67,7 @@ end
 
 template "hdfs-site.xml" do
 	path "/etc/hadoop/conf.my_cluster/hdfs-site.xml"
-	source "cdh4/hdfs-site.xml.erb"
+	source "hdfs-site.xml.erb"
 	owner "root"
 	group "hadoop"
 	mode 00644
@@ -132,7 +132,7 @@ end
 #設定ファイル(MRv1)
 template "mapred-site.xml" do
 	path "/etc/hadoop/conf.my_cluster/mapred-site.xml"
-	source "cdh4/mapred-site.xml.erb"
+	source "mapred-site.xml.erb"
 	owner "root"
 	group "hadoop"
 	mode 00644
@@ -169,7 +169,7 @@ bash "create var directory on hdfs" do
 	sudo -u hdfs hadoop fs -chown -R mapred /var/lib/hadoop-hdfs/cache/mapred/mapred/staging
 	sudo -u hdfs hadoop fs -chmod -R 1777 /var/lib/hadoop-hdfs/cache/mapred
 	EOS
-	not_if "sudo -u hdfs hadoop fs -test -d /user/history"
+	not_if "sudo -u hdfs hadoop fs -test -d /var/lib/hadoop-hdfs/cache/mapred/mapred/staging"
 end
 
 bash "Create and Configure the mapred.system.dir Directory in HDFS" do
@@ -177,7 +177,7 @@ bash "Create and Configure the mapred.system.dir Directory in HDFS" do
 	sudo -u hdfs hadoop fs -mkdir /tmp/mapred/system
 	sudo -u hdfs hadoop fs -chown mapred:hadoop /tmp/mapred/system
 	EOS
-	not_if "sudo -u hdfs hadoop fs -test -d /user/history"
+	not_if "sudo -u hdfs hadoop fs -test -d /tmp/mapred/system"
 end
 
 
