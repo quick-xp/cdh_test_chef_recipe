@@ -37,7 +37,6 @@ template ".vimrc" do
 	mode 00774
 end
 
-#errorのためコメントアウト
-#package 'ctags'
+package 'ctags'
 
 
