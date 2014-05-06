@@ -19,7 +19,7 @@ limitations under the License. See accompanying LICENSE file.
 <configuration>
 	<property>
 		<name>mapred.job.tracker</name>
-		<value>hadoopvm:8021</value>
+		<value><%=node["cdh"]["hostname"]%>:8021</value>
 	</property>
 	<property>
 		<name>mapred.local.dir</name>
