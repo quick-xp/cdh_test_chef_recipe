@@ -1,0 +1,9 @@
+#
+# Cookbook Name:: eclipse
+# Recipe:: default
+#
+# All rights reserved - Do Not Redistribute
+#
+
+
+package "pleiades"
