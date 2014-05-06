@@ -3,6 +3,8 @@
 # Recipe:: cdh
 #
 
+package 'curl'
+
 template "cloudera.list" do
 	path "/etc/apt/sources.list.d/cloudera.list"
 	source "cloudera.list.erb"
