@@ -1,6 +1,0 @@
-{
-	"run_list":["base-git",
-		"recipe[java::default]",
-		"recipe[cdh::cdh4]"
-			]
-}
